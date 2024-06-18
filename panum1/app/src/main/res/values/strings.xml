@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">PAnUM_Lab1</string>
+    <array name="operations">
+        <item>*</item>
+        <item>/</item>
+        <item>+</item>
+        <item>-</item>
+    </array>
+</resources>
