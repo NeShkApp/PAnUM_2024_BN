@@ -1,6 +1,6 @@
 package org.bohdan.panum_lab5
 
-import android.content.Context
+import android.content.Intent
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -12,10 +12,9 @@ import android.widget.TextView
 
 class StoreAdapter(private val stores: ArrayList<Store>) : RecyclerView.Adapter<StoreAdapter.StoreViewHolder>() {
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StoreViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_store,
-        parent, false)
+            parent, false)
         return StoreViewHolder(itemView)
     }
 
@@ -33,14 +32,22 @@ class StoreAdapter(private val stores: ArrayList<Store>) : RecyclerView.Adapter<
             .load(currentItem.mapImageUrl)
             .into(holder.imageViewMap)
 
+        holder.itemView.setOnClickListener {
+            val intent = Intent(holder.itemView.context, DetailActivity::class.java).apply {
+                putExtra("storeName", currentItem.name)
+                putExtra("address", currentItem.address)
+                putExtra("openingHours", currentItem.openingHours)
+                putExtra("mapImageUrl", currentItem.mapImageUrl)
+                putExtra("menuItems", currentItem.menuItems)
+            }
+            holder.itemView.context.startActivity(intent)
+        }
     }
 
-    class StoreViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-
+    class StoreViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val textViewAddress: TextView = itemView.findViewById(R.id.textViewAddress)
         val textViewOpeningHours: TextView = itemView.findViewById(R.id.textViewOpeningHours)
         val textViewStoreName: TextView = itemView.findViewById(R.id.textViewStoreName)
         val imageViewMap: ImageView = itemView.findViewById(R.id.imageViewMap)
-
     }
 }
