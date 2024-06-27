@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">NewsReader</string>
+    <string-array name="sort_options">
+        <item>Sort by newest</item>
+        <item>Sort by oldest</item>
+    </string-array>
+</resources>
